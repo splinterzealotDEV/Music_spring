@@ -26,7 +26,7 @@ public class Artist {
 	private String country;
 	@Column(name="year")
 	private int year;
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="artist")
 	private List <Song> songs;
 	
@@ -37,7 +37,7 @@ public class Artist {
 	
 	
 	public Artist(String name, String country, int year) {
-		super();
+		
 		this.name = name;
 		this.country = country;
 		this.year = year;
@@ -75,6 +75,13 @@ public class Artist {
 
 	public void setSongs(List<Song> songs) {
 		this.songs = songs;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Artist [id=" + id + ", name=" + name + ", country=" + country + ", year=" + year + ", songs=" + songs
+				+ "]";
 	}
 	
 	

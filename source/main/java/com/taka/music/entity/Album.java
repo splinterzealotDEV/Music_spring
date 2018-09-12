@@ -20,7 +20,7 @@ public class Album {
 	private String titulo;
 	@Column(name="year")
 	private int year;
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
 	private Artist artist;
 	@Id
@@ -34,7 +34,7 @@ public class Album {
 	}
 
 	public Album(String titulo, int year, Artist artist) {
-		super();
+		
 		this.titulo = titulo;
 		this.year = year;
 		this.artist = artist;
@@ -70,6 +70,11 @@ public class Album {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Album [titulo=" + titulo + ", year=" + year + ", artist=" + artist + ", id=" + id + "]";
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.taka.music.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -23,7 +25,14 @@ public class DAOimp implements DAO {
 		Session currentsession=sessionFactory.getCurrentSession();
 		//retrieving object
 		Song tempsong=currentsession.get(Song.class,id);
+		//lazy fetching the artist
 		tempsong.getArtist();
+		//lazy fetching the songs
+		List<Song> songs=tempsong.getArtist().getSongs();
+		
+		for(Song song:songs) {
+			System.out.println(song);
+		}
 		
 		return tempsong;
 	}
